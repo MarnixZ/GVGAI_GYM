@@ -26,7 +26,7 @@ public class Test {
 		String sampleOLETSController = "tracks.singlePlayer.advanced.olets.Agent";
 
 		//Load available games
-		String spGamesCollection =  "examples/all_games_sp.csv";
+		String spGamesCollection =  "games.csv";
 		String[][] games = Utils.readGames(spGamesCollection);
 
 		//Game settings

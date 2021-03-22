@@ -1,0 +1,10 @@
+0,gym_gvgai/envs/gvgai/examples/gridphysics/butterflies.txt
+1,gym_gvgai/envs/gvgai/examples/gridphysics/chopper.txt
+2,gym_gvgai/envs/gvgai/examples/gridphysics/deflection.txt
+3,gym_gvgai/envs/gvgai/examples/gridphysics/frogs.txt
+4,gym_gvgai/envs/gvgai/examples/gridphysics/intersection.txt
+5,gym_gvgai/envs/gvgai/examples/gridphysics/jaws.txt
+6,gym_gvgai/envs/gvgai/examples/gridphysics/chase.txt
+7,gym_gvgai/envs/gvgai/examples/gridphysics/boulderdash.txt
+8,gym_gvgai/envs/gvgai/examples/gridphysics/crossfire.txt
+9,gym_gvgai/envs/gvgai/examples/gridphysics/bait.txt
