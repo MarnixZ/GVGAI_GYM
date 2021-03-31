@@ -3,6 +3,7 @@ import core.game.StateObservation;
 import core.player.AbstractPlayer;
 import ontology.Types;
 import tools.ElapsedCpuTimer;
+import tracks.singlePlayer.advanced.sampleMCTS.SingleMCTSPlayer;
 import tracks.singlePlayer.tools.Heuristics.StateHeuristic;
 import tracks.singlePlayer.tools.Heuristics.WinScoreHeuristic;
 
@@ -45,6 +46,13 @@ public class Agent extends AbstractPlayer {
     private boolean keepIterating = true;
     private long remaining;
 
+    private Individual[] prev_pop = null;
+
+    public int num_actions;
+    public Types.ACTIONS[] actions;
+
+    protected SingleMCTSPlayer mctsPlayer;
+
     /**
      * Public constructor with state observation and time due.
      *
@@ -52,13 +60,41 @@ public class Agent extends AbstractPlayer {
      * @param elapsedTimer Timer for the controller creation.
      */
     public Agent(StateObservation stateObs, ElapsedCpuTimer elapsedTimer) {
+        //Get the actions in a static array.
+        ArrayList<Types.ACTIONS> act = stateObs.getAvailableActions();
+        actions = new Types.ACTIONS[act.size()];
+        for(int i = 0; i < actions.length; ++i)
+        {
+            actions[i] = act.get(i);
+        }
+        num_actions = actions.length;
+
+
+        //Create the player.
+
+        mctsPlayer = getPlayer(stateObs, elapsedTimer);
+
         randomGenerator = new Random();
         heuristic = new WinScoreHeuristic(stateObs);
         this.timer = elapsedTimer;
     }
 
+    public SingleMCTSPlayer getPlayer(StateObservation so, ElapsedCpuTimer elapsedTimer) {
+        return new SingleMCTSPlayer(new Random(), num_actions, actions);
+    }
+
     @Override
     public Types.ACTIONS act(StateObservation stateObs, ElapsedCpuTimer elapsedTimer) {
+        remaining = timer.remainingTimeMillis();
+        // Set the state observation object as the new root of the tree.
+//        mctsPlayer.init(stateObs);
+
+        // Determine the action using MCTS...
+//        int action = mctsPlayer.run(elapsedTimer);
+
+
+
+
         this.timer = elapsedTimer;
         avgTimeTaken = 0;
         acumTimeTaken = 0;
@@ -79,9 +115,18 @@ public class Agent extends AbstractPlayer {
             remaining = timer.remainingTimeMillis();
         }
 
+        // SAVE PREVIOUS POPULATION
+        prev_pop = new Individual[POPULATION_SIZE];
+        for (int i = 0; i < population.length; i++) {
+            prev_pop[i] = population[i];
+        }
+
         // RETURN ACTION
         Types.ACTIONS best = get_best_action(population);
+
+
         return best;
+
     }
 
     /**
@@ -187,6 +232,21 @@ public class Agent extends AbstractPlayer {
         return value;
     }
 
+    private double evaluate_mcts(Types.ACTIONS action_mcts, StateHeuristic heuristic, StateObservation state) {
+
+        ElapsedCpuTimer elapsedTimerIterationEval = new ElapsedCpuTimer();
+
+        StateObservation st = state.copy();
+
+        st.advance(action_mcts);
+
+        StateObservation first = st.copy();
+        double value = heuristic.evaluateState(first);
+
+
+        return value;
+    }
+
     /**
      * @return - the individual resulting from crossover applied to the specified population
      */
@@ -256,14 +316,42 @@ public class Agent extends AbstractPlayer {
 
         population = new Individual[POPULATION_SIZE];
         nextPop = new Individual[POPULATION_SIZE];
-        for (int i = 0; i < POPULATION_SIZE; i++) {
-            if (i == 0 || remaining > avgTimeTakenEval && remaining > BREAK_MS) {
-                population[i] = new Individual(SIMULATION_DEPTH, N_ACTIONS, randomGenerator);
-                evaluate(population[i], heuristic, stateObs);
-                remaining = timer.remainingTimeMillis();
-                NUM_INDIVIDUALS = i+1;
-            } else {break;}
+
+        if (prev_pop == null) {
+            // WHEN GAME STARTS; POPULATION FOR FIRST MOVE
+            for (int i = 0; i < POPULATION_SIZE; i++) {
+                if (i == 0 || remaining > avgTimeTakenEval && remaining > BREAK_MS) {
+                    population[i] = new Individual(SIMULATION_DEPTH, N_ACTIONS, randomGenerator);
+                    evaluate(population[i], heuristic, stateObs);
+                    remaining = timer.remainingTimeMillis();
+                    NUM_INDIVIDUALS = i + 1;
+                } else {
+                    break;
+                }
+            }
+        } else {
+            // WHEN prev_pop IS KNOWN
+            for (int i = 0; i < POPULATION_SIZE; i++) {
+                if (i == 0 || remaining > avgTimeTakenEval && remaining > BREAK_MS) {
+                    int[] moves = new int[SIMULATION_DEPTH];
+                    for (int j = 0; j < SIMULATION_DEPTH; j++) {
+                        if (j < SIMULATION_DEPTH-1 && prev_pop[i] != null) {
+                            moves[j] = prev_pop[i].actions[j + 1];
+                        } else {
+                            moves[j] = randomGenerator.nextInt(N_ACTIONS);
+                        }
+                    }
+                    population[i] = new Individual(SIMULATION_DEPTH, N_ACTIONS, randomGenerator);
+                    population[i].setActions(moves);
+                    evaluate(population[i], heuristic, stateObs);
+                    remaining = timer.remainingTimeMillis();
+                    NUM_INDIVIDUALS = i + 1;
+                } else {
+                    break;
+                }
+            }
         }
+
 
         if (NUM_INDIVIDUALS > 1)
             Arrays.sort(population, new Comparator<Individual>() {
