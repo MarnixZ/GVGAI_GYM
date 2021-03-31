@@ -25,6 +25,7 @@ public class Agent extends AbstractPlayer {
     private int NO_PARENTS = 2;
     private int RESAMPLE = 1;
     private int ELITISM = 1;
+    private int ROLLOUT_N = 5;
 
     // constants
     private final long BREAK_MS = 10;
@@ -45,6 +46,7 @@ public class Agent extends AbstractPlayer {
     private int numEvals = 0, numIters = 0;
     private boolean keepIterating = true;
     private long remaining;
+
 
     private Individual[] prev_pop = null;
 
@@ -219,8 +221,41 @@ public class Agent extends AbstractPlayer {
         StateObservation first = st.copy();
         double value = heuristic.evaluateState(first);
 
+        // PERFORM MCTS ROLLOUT
+        int k;
+        double acum2 = 0, avg2;
+        Random rd = new Random();
+        for (k = 0; k < ROLLOUT_N; k++) {
+            if (!st.isGameOver()) {
+                int rd_state = state.getAvailableActions().size() + 1;
+                ElapsedCpuTimer elapsedTimerIteration = new ElapsedCpuTimer();
+
+                st.advance(action_mapping.get(rd.nextInt(rd_state)));
+
+                acum2 += elapsedTimerIteration.elapsedMillis();
+                avg2 = acum2 / (k + 1);
+                remaining = timer.remainingTimeMillis();
+                if (remaining < 2 * avg2 || remaining < BREAK_MS) break;
+            } else {
+                break;
+            }
+        }
+        StateObservation second = st.copy();
+        double value_2 = heuristic.evaluateState(second);
+
+
+
         // Apply discount factor
         value *= Math.pow(DISCOUNT,i);
+
+        // UPDATE VALUE WITH MCTS ROLLOUT SCORE
+        boolean gameOver = st.isGameOver();
+        Types.WINNER win = st.getGameWinner();
+        if (gameOver && win == Types.WINNER.PLAYER_WINS) {
+            value *= Math.pow(1.15,((ROLLOUT_N-k)/2.0));
+        } else if (gameOver && win == Types.WINNER.PLAYER_LOSES){
+            value *= Math.pow(0.85,((ROLLOUT_N-k)/2.0));
+        }
 
         individual.value = value;
 
