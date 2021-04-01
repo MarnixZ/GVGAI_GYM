@@ -82,7 +82,7 @@ public class Test {
 				if(saveActions) for(int k = 0; k < M; ++k)
 				actionFiles[actionIdx++] = "actions_game_" + i + "_level_" + j + "_" + k + ".txt";
 			}
-			ArcadeMachine.runGames(game, levels, M, StudentController, saveActions? actionFiles:null);
+			ArcadeMachine.runGames(game, levels, M, studentController, saveActions? actionFiles:null);
 		}
 
 

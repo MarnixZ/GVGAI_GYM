@@ -1,0 +1,50 @@
+Result (1->win; 0->lose): Player0:1, Player0-Score:38.0, timesteps:828
+Result (1->win; 0->lose): Player0:1, Player0-Score:34.0, timesteps:303
+Result (1->win; 0->lose): Player0:0, Player0-Score:50.0, timesteps:231
+Result (1->win; 0->lose): Player0:1, Player0-Score:22.0, timesteps:192
+Results in game gym_gvgai/envs/gvgai/examples/gridphysics/butterflies.txt, 0.75 , 36.0
+Result (1->win; 0->lose): Player0:1, Player0-Score:19.0, timesteps:1448
+Result (1->win; 0->lose): Player0:1, Player0-Score:17.0, timesteps:1199
+Result (1->win; 0->lose): Player0:1, Player0-Score:16.0, timesteps:1004
+Result (1->win; 0->lose): Player0:1, Player0-Score:17.0, timesteps:1077
+Results in game gym_gvgai/envs/gvgai/examples/gridphysics/chopper.txt, 1.0 , 17.25
+Result (1->win; 0->lose): Player0:0, Player0-Score:0.0, timesteps:186
+Result (1->win; 0->lose): Player0:0, Player0-Score:0.0, timesteps:136
+Result (1->win; 0->lose): Player0:0, Player0-Score:0.0, timesteps:151
+Result (1->win; 0->lose): Player0:0, Player0-Score:0.0, timesteps:198
+Results in game gym_gvgai/envs/gvgai/examples/gridphysics/deflection.txt, 0.0 , 0.0
+Result (1->win; 0->lose): Player0:0, Player0-Score:0.0, timesteps:411
+Result (1->win; 0->lose): Player0:0, Player0-Score:0.0, timesteps:643
+Result (1->win; 0->lose): Player0:0, Player0-Score:0.0, timesteps:928
+Result (1->win; 0->lose): Player0:0, Player0-Score:0.0, timesteps:166
+Results in game gym_gvgai/envs/gvgai/examples/gridphysics/frogs.txt, 0.0 , 0.0
+Result (1->win; 0->lose): Player0:1, Player0-Score:1.0, timesteps:1000
+Result (1->win; 0->lose): Player0:1, Player0-Score:1.0, timesteps:1000
+Result (1->win; 0->lose): Player0:1, Player0-Score:1.0, timesteps:1000
+Result (1->win; 0->lose): Player0:1, Player0-Score:1.0, timesteps:1000
+Results in game gym_gvgai/envs/gvgai/examples/gridphysics/intersection.txt, 1.0 , 1.0
+Result (1->win; 0->lose): Player0:0, Player0-Score:1051.0, timesteps:540
+Result (1->win; 0->lose): Player0:0, Player0-Score:47.0, timesteps:440
+Result (1->win; 0->lose): Player0:0, Player0-Score:9.0, timesteps:238
+Result (1->win; 0->lose): Player0:0, Player0-Score:5.0, timesteps:110
+Results in game gym_gvgai/envs/gvgai/examples/gridphysics/jaws.txt, 0.0 , 278.0
+Result (1->win; 0->lose): Player0:0, Player0-Score:2.0, timesteps:1477
+Result (1->win; 0->lose): Player0:0, Player0-Score:1.0, timesteps:677
+Result (1->win; 0->lose): Player0:0, Player0-Score:4.0, timesteps:2000
+Result (1->win; 0->lose): Player0:0, Player0-Score:1.0, timesteps:584
+Results in game gym_gvgai/envs/gvgai/examples/gridphysics/chase.txt, 0.0 , 2.0
+Result (1->win; 0->lose): Player0:0, Player0-Score:3.0, timesteps:1899
+Result (1->win; 0->lose): Player0:0, Player0-Score:19.0, timesteps:517
+Result (1->win; 0->lose): Player0:0, Player0-Score:17.0, timesteps:729
+Result (1->win; 0->lose): Player0:0, Player0-Score:11.0, timesteps:961
+Results in game gym_gvgai/envs/gvgai/examples/gridphysics/boulderdash.txt, 0.0 , 12.5
+Result (1->win; 0->lose): Player0:0, Player0-Score:-1.0, timesteps:660
+Result (1->win; 0->lose): Player0:0, Player0-Score:0.0, timesteps:2000
+Result (1->win; 0->lose): Player0:0, Player0-Score:-1.0, timesteps:777
+Result (1->win; 0->lose): Player0:0, Player0-Score:-1.0, timesteps:1113
+Results in game gym_gvgai/envs/gvgai/examples/gridphysics/crossfire.txt, 0.0 , -0.75
+Result (1->win; 0->lose): Player0:0, Player0-Score:0.0, timesteps:2000
+Result (1->win; 0->lose): Player0:0, Player0-Score:0.0, timesteps:2000
+Result (1->win; 0->lose): Player0:0, Player0-Score:2.0, timesteps:2000
+Result (1->win; 0->lose): Player0:0, Player0-Score:25.0, timesteps:1995
+Results in game gym_gvgai/envs/gvgai/examples/gridphysics/bait.txt, 0.0 , 6.75

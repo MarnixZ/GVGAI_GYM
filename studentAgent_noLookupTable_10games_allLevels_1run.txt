@@ -1,0 +1,58 @@
+Result (1->win; 0->lose): Player0:1, Player0-Score:28.0, timesteps:103
+Result (1->win; 0->lose): Player0:1, Player0-Score:32.0, timesteps:527
+Result (1->win; 0->lose): Player0:1, Player0-Score:58.0, timesteps:410
+Result (1->win; 0->lose): Player0:1, Player0-Score:24.0, timesteps:394
+Results in game gym_gvgai/envs/gvgai/examples/gridphysics/butterflies.txt, 1.0 , 35.5
+Result (1->win; 0->lose): Player0:1, Player0-Score:13.0, timesteps:1096
+Result (1->win; 0->lose): Player0:0, Player0-Score:-1.0, timesteps:2000
+Result (1->win; 0->lose): Player0:0, Player0-Score:-7.0, timesteps:1397
+Result (1->win; 0->lose): Player0:1, Player0-Score:6.0, timesteps:1409
+Results in game gym_gvgai/envs/gvgai/examples/gridphysics/chopper.txt, 0.5 , 2.75
+Result (1->win; 0->lose): Player0:0, Player0-Score:0.0, timesteps:423
+Result (1->win; 0->lose): Player0:0, Player0-Score:0.0, timesteps:273
+Overspent: 0(exceeding 5ms): applying ACTION_NIL.
+Overspent: 0(exceeding 4ms): applying ACTION_NIL.
+Overspent: 0(exceeding 8ms): applying ACTION_NIL.
+Overspent: 0(exceeding 0ms): applying ACTION_NIL.
+Overspent: 0(exceeding 2ms): applying ACTION_NIL.
+Overspent: 0(exceeding 1ms): applying ACTION_NIL.
+Overspent: 0(exceeding 1ms): applying ACTION_NIL.
+Too long: 0(exceeding 24ms): controller disqualified.
+Result (1->win; 0->lose): Player0:-100, Player0-Score:-1000.0, timesteps:277
+Result (1->win; 0->lose): Player0:0, Player0-Score:0.0, timesteps:384
+Results in game gym_gvgai/envs/gvgai/examples/gridphysics/deflection.txt, 0.0 , -250.0
+Result (1->win; 0->lose): Player0:0, Player0-Score:0.0, timesteps:462
+Result (1->win; 0->lose): Player0:0, Player0-Score:0.0, timesteps:720
+Result (1->win; 0->lose): Player0:0, Player0-Score:0.0, timesteps:2000
+Result (1->win; 0->lose): Player0:0, Player0-Score:0.0, timesteps:1919
+Results in game gym_gvgai/envs/gvgai/examples/gridphysics/frogs.txt, 0.0 , 0.0
+Result (1->win; 0->lose): Player0:1, Player0-Score:1.0, timesteps:1000
+Result (1->win; 0->lose): Player0:1, Player0-Score:1.0, timesteps:1000
+Result (1->win; 0->lose): Player0:1, Player0-Score:10.0, timesteps:1000
+Result (1->win; 0->lose): Player0:1, Player0-Score:1.0, timesteps:1000
+Results in game gym_gvgai/envs/gvgai/examples/gridphysics/intersection.txt, 1.0 , 3.25
+Result (1->win; 0->lose): Player0:0, Player0-Score:12.0, timesteps:232
+Result (1->win; 0->lose): Player0:0, Player0-Score:35.0, timesteps:360
+Result (1->win; 0->lose): Player0:0, Player0-Score:22.0, timesteps:430
+Result (1->win; 0->lose): Player0:1, Player0-Score:1096.0, timesteps:1000
+Results in game gym_gvgai/envs/gvgai/examples/gridphysics/jaws.txt, 0.25 , 291.25
+Result (1->win; 0->lose): Player0:0, Player0-Score:1.0, timesteps:1246
+Result (1->win; 0->lose): Player0:0, Player0-Score:0.0, timesteps:2000
+Result (1->win; 0->lose): Player0:0, Player0-Score:9.0, timesteps:2000
+Result (1->win; 0->lose): Player0:1, Player0-Score:6.0, timesteps:1305
+Results in game gym_gvgai/envs/gvgai/examples/gridphysics/chase.txt, 0.25 , 4.0
+Result (1->win; 0->lose): Player0:0, Player0-Score:3.0, timesteps:943
+Result (1->win; 0->lose): Player0:0, Player0-Score:13.0, timesteps:627
+Result (1->win; 0->lose): Player0:0, Player0-Score:11.0, timesteps:1135
+Result (1->win; 0->lose): Player0:0, Player0-Score:12.0, timesteps:2000
+Results in game gym_gvgai/envs/gvgai/examples/gridphysics/boulderdash.txt, 0.0 , 9.75
+Result (1->win; 0->lose): Player0:1, Player0-Score:5.0, timesteps:744
+Result (1->win; 0->lose): Player0:0, Player0-Score:0.0, timesteps:2000
+Result (1->win; 0->lose): Player0:1, Player0-Score:5.0, timesteps:1624
+Result (1->win; 0->lose): Player0:0, Player0-Score:-1.0, timesteps:108
+Results in game gym_gvgai/envs/gvgai/examples/gridphysics/crossfire.txt, 0.5 , 2.25
+Result (1->win; 0->lose): Player0:0, Player0-Score:0.0, timesteps:2000
+Result (1->win; 0->lose): Player0:0, Player0-Score:1.0, timesteps:2000
+Result (1->win; 0->lose): Player0:0, Player0-Score:1.0, timesteps:2000
+Result (1->win; 0->lose): Player0:0, Player0-Score:3.0, timesteps:2000
+Results in game gym_gvgai/envs/gvgai/examples/gridphysics/bait.txt, 0.0 , 1.25
