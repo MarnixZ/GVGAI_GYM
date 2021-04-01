@@ -48,3 +48,4 @@ Result (1->win; 0->lose): Player0:0, Player0-Score:0.0, timesteps:2000
 Result (1->win; 0->lose): Player0:0, Player0-Score:2.0, timesteps:2000
 Result (1->win; 0->lose): Player0:0, Player0-Score:3.0, timesteps:2000
 Results in game gym_gvgai/envs/gvgai/examples/gridphysics/bait.txt, 0.25 , 2.5
+27/40
