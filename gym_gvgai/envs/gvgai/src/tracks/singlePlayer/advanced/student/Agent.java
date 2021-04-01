@@ -1,9 +1,9 @@
 package tracks.singlePlayer.advanced.student;
+import core.game.Observation;
 import core.game.StateObservation;
 import core.player.AbstractPlayer;
 import ontology.Types;
 import tools.ElapsedCpuTimer;
-import tracks.singlePlayer.advanced.sampleMCTS.SingleMCTSPlayer;
 import tracks.singlePlayer.tools.Heuristics.StateHeuristic;
 import tracks.singlePlayer.tools.Heuristics.WinScoreHeuristic;
 
@@ -49,11 +49,13 @@ public class Agent extends AbstractPlayer {
 
 
     private Individual[] prev_pop = null;
+    private HashMap<String, Types.ACTIONS> prev_obvs = new HashMap<String, Types.ACTIONS>();
+    private StringBuilder sb = new StringBuilder();
+    private boolean check_lookup = true;
 
     public int num_actions;
     public Types.ACTIONS[] actions;
 
-    protected SingleMCTSPlayer mctsPlayer;
 
     /**
      * Public constructor with state observation and time due.
@@ -72,31 +74,13 @@ public class Agent extends AbstractPlayer {
         num_actions = actions.length;
 
 
-        //Create the player.
-
-        mctsPlayer = getPlayer(stateObs, elapsedTimer);
-
         randomGenerator = new Random();
         heuristic = new WinScoreHeuristic(stateObs);
         this.timer = elapsedTimer;
     }
 
-    public SingleMCTSPlayer getPlayer(StateObservation so, ElapsedCpuTimer elapsedTimer) {
-        return new SingleMCTSPlayer(new Random(), num_actions, actions);
-    }
-
     @Override
     public Types.ACTIONS act(StateObservation stateObs, ElapsedCpuTimer elapsedTimer) {
-        remaining = timer.remainingTimeMillis();
-        // Set the state observation object as the new root of the tree.
-//        mctsPlayer.init(stateObs);
-
-        // Determine the action using MCTS...
-//        int action = mctsPlayer.run(elapsedTimer);
-
-
-
-
         this.timer = elapsedTimer;
         avgTimeTaken = 0;
         acumTimeTaken = 0;
@@ -106,6 +90,26 @@ public class Agent extends AbstractPlayer {
         remaining = timer.remainingTimeMillis();
         NUM_INDIVIDUALS = 0;
         keepIterating = true;
+
+        // SEARCH IN LOOKUP TABLE FOR CURRENT OBSERVATION. IF FOUND, RETURN BEST MOVE.
+        ArrayList<Observation> curr_obs[] = stateObs.getNPCPositions(stateObs.getAvatarPosition());
+        sb.setLength(0);
+        String sb_str = "";
+        check_lookup = true;
+
+        if (curr_obs != null) {
+            for (Observation ooo : curr_obs[0]) {
+                sb.append(ooo.toString());
+            }
+            sb.append(stateObs.getAvatarSpeed());
+            sb.append(stateObs.getAvatarOrientation().toString());
+            sb_str = sb.toString();
+            if (prev_obvs.containsKey(sb_str)) {
+                return prev_obvs.get(sb_str);
+            }
+        } else {
+            check_lookup = false;
+        }
 
         // INITIALISE POPULATION
         init_pop(stateObs);
@@ -127,8 +131,12 @@ public class Agent extends AbstractPlayer {
         Types.ACTIONS best = get_best_action(population);
 
 
-        return best;
+        // SAVE BEST MOVE IN LOOKUP TABLE
+        if (check_lookup && !prev_obvs.containsKey(sb_str)) {
+            prev_obvs.put(sb_str, best);
+        }
 
+        return best;
     }
 
     /**
@@ -267,20 +275,6 @@ public class Agent extends AbstractPlayer {
         return value;
     }
 
-    private double evaluate_mcts(Types.ACTIONS action_mcts, StateHeuristic heuristic, StateObservation state) {
-
-        ElapsedCpuTimer elapsedTimerIterationEval = new ElapsedCpuTimer();
-
-        StateObservation st = state.copy();
-
-        st.advance(action_mcts);
-
-        StateObservation first = st.copy();
-        double value = heuristic.evaluateState(first);
-
-
-        return value;
-    }
 
     /**
      * @return - the individual resulting from crossover applied to the specified population
